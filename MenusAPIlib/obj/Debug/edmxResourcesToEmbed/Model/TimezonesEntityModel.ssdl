@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimezonesEntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TimezonesEntityModelStoreContainer">
+    <EntitySet Name="Users" EntityType="TimezonesEntityModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="TimezonesEntityModel.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimezoneEntries" EntityType="TimezonesEntityModel.Store.TimezoneEntries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogEntries" EntityType="TimezonesEntityModel.Store.LogEntries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserUserRole" EntityType="TimezonesEntityModel.Store.UserUserRole" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserUserRole_User" Association="TimezonesEntityModel.Store.FK_UserUserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserUserRole" EntitySet="UserUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserRole_UserRole" Association="TimezonesEntityModel.Store.FK_UserUserRole_UserRole">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="UserUserRole" EntitySet="UserUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="TimezoneEntryUser" Association="TimezonesEntityModel.Store.TimezoneEntryUser">
+      <End Role="TimezoneEntry" EntitySet="TimezoneEntries" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CanCRUDOthersEntries" Type="bit" Nullable="false" />
+    <Property Name="CanCRUDUsers" Type="bit" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TimezoneEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CityName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="GMTOffsetInMinutes" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CredentialsSummary" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Moment" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserUserRole">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="UserRoles_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="UserRoles_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TimezoneEntryUser">
+    <End Role="TimezoneEntry" Type="TimezonesEntityModel.Store.TimezoneEntries" Multiplicity="*" />
+    <End Role="User" Type="TimezonesEntityModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimezoneEntry">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRole_User">
+    <End Role="User" Type="TimezonesEntityModel.Store.Users" Multiplicity="1" />
+    <End Role="UserUserRole" Type="TimezonesEntityModel.Store.UserUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUserRole">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRole_UserRole">
+    <End Role="UserUserRole" Type="TimezonesEntityModel.Store.UserUserRole" Multiplicity="*" />
+    <End Role="UserRole" Type="TimezonesEntityModel.Store.UserRoles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUserRole">
+        <PropertyRef Name="UserRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

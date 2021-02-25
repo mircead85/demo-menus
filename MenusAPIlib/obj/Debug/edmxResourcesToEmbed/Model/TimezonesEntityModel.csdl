@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TimezonesEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="TimezonesEntityModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="TimezonesEntityModel.User" />
+    <EntitySet Name="UserRoles" EntityType="TimezonesEntityModel.UserRole" />
+    <AssociationSet Name="UserUserRole" Association="TimezonesEntityModel.UserUserRole">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="TimezoneEntries" EntityType="TimezonesEntityModel.TimezoneEntry" />
+    <AssociationSet Name="TimezoneEntryUser" Association="TimezonesEntityModel.TimezoneEntryUser">
+      <End Role="TimezoneEntry" EntitySet="TimezoneEntries" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="LogEntries" EntityType="TimezonesEntityModel.LogEntry" />
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="30">
+      <Documentation>
+        <Summary>Username used for login.</Summary>
+      </Documentation>
+    </Property>
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100">
+      <Documentation>
+        <LongDescription>Password used for login</LongDescription>
+      </Documentation>
+    </Property>
+    <NavigationProperty Name="UserRoles" Relationship="TimezonesEntityModel.UserUserRole" FromRole="User" ToRole="UserRole" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" annotation:StoreGeneratedPattern="None" />
+    <NavigationProperty Name="TimezoneEntries" Relationship="TimezonesEntityModel.TimezoneEntryUser" FromRole="User" ToRole="TimezoneEntry" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CanCRUDOthersEntries" Type="Boolean" Nullable="false" />
+    <Property Name="CanCRUDUsers" Type="Boolean" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="TimezonesEntityModel.UserUserRole" FromRole="UserRole" ToRole="User" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <Association Name="UserUserRole">
+    <End Type="TimezonesEntityModel.User" Role="User" Multiplicity="*" />
+    <End Type="TimezonesEntityModel.UserRole" Role="UserRole" Multiplicity="*" />
+  </Association>
+  <EntityType Name="TimezoneEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="CityName" Type="String" Nullable="true" MaxLength="100" />
+    <Property Name="GMTOffsetInMinutes" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="TimezonesEntityModel.TimezoneEntryUser" FromRole="TimezoneEntry" ToRole="User" />
+  </EntityType>
+  <Association Name="TimezoneEntryUser">
+    <End Type="TimezonesEntityModel.TimezoneEntry" Role="TimezoneEntry" Multiplicity="*" />
+    <End Type="TimezonesEntityModel.User" Role="User" Multiplicity="1" />
+  </Association>
+  <EntityType Name="LogEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="true" />
+    <Property Name="CredentialsSummary" Type="String" Nullable="true" />
+    <Property Name="Moment" Type="DateTime" Nullable="false" />
+  </EntityType>
+</Schema>

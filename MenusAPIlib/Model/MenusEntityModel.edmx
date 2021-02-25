@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MenusEntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MenusEntityModelStoreContainer">
+    <EntitySet Name="Users" EntityType="MenusEntityModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRoles" EntityType="MenusEntityModel.Store.UserRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuEntries" EntityType="MenusEntityModel.Store.MenuEntries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogEntries" EntityType="MenusEntityModel.Store.LogEntries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserUserRole" EntityType="MenusEntityModel.Store.UserUserRole" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserUserRole_User" Association="MenusEntityModel.Store.FK_UserUserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserUserRole" EntitySet="UserUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserRole_UserRole" Association="MenusEntityModel.Store.FK_UserUserRole_UserRole">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="UserUserRole" EntitySet="UserUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="MenuEntryUser" Association="MenusEntityModel.Store.MenuEntryUser">
+      <End Role="MenuEntry" EntitySet="MenuEntries" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="3000" />
+    <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ExpectedNumCalories" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CanCRUDOthersEntries" Type="bit" Nullable="false" />
+    <Property Name="CanCRUDUsers" Type="bit" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MenuEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Moment" Type="datetime" Nullable="false" />
+    <Property Name="NumCalories" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CredentialsSummary" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Moment" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserUserRole">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="UserRoles_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="UserRoles_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="MenuEntryUser">
+    <End Role="MenuEntry" Type="MenusEntityModel.Store.MenuEntries" Multiplicity="*" />
+    <End Role="User" Type="MenusEntityModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuEntry">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRole_User">
+    <End Role="User" Type="MenusEntityModel.Store.Users" Multiplicity="1" />
+    <End Role="UserUserRole" Type="MenusEntityModel.Store.UserUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUserRole">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserUserRole_UserRole">
+    <End Role="UserUserRole" Type="MenusEntityModel.Store.UserUserRole" Multiplicity="*" />
+    <End Role="UserRole" Type="MenusEntityModel.Store.UserRoles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserUserRole">
+        <PropertyRef Name="UserRoles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MenusEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MenusEntityModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="MenusEntityModel.User" />
+          <EntitySet Name="UserRoles" EntityType="MenusEntityModel.UserRole" />
+          <AssociationSet Name="UserUserRole" Association="MenusEntityModel.UserUserRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="MenuEntries" EntityType="MenusEntityModel.MenuEntry" />
+          <AssociationSet Name="MenuEntryUser" Association="MenusEntityModel.MenuEntryUser">
+            <End Role="MenuEntry" EntitySet="MenuEntries" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="LogEntries" EntityType="MenusEntityModel.LogEntry" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="30" >
+            <Documentation>
+              <Summary>Username used for login.</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="3000" >
+            <Documentation>
+              <LongDescription>Password used for login</LongDescription>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="UserRoles" Relationship="MenusEntityModel.UserUserRole" FromRole="User" ToRole="UserRole" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="MenuEntries" Relationship="MenusEntityModel.MenuEntryUser" FromRole="User" ToRole="MenuEntry" />
+          <Property Name="ExpectedNumCalories" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CanCRUDOthersEntries" Type="Boolean" Nullable="false" />
+          <Property Name="CanCRUDUsers" Type="Boolean" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="MenusEntityModel.UserUserRole" FromRole="UserRole" ToRole="User" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="UserUserRole">
+          <End Type="MenusEntityModel.User" Role="User" Multiplicity="*" />
+          <End Type="MenusEntityModel.UserRole" Role="UserRole" Multiplicity="*" />
+        </Association>
+        <EntityType Name="MenuEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Moment" Type="DateTime" Nullable="false" />
+          <Property Name="NumCalories" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="MenusEntityModel.MenuEntryUser" FromRole="MenuEntry" ToRole="User" />
+        </EntityType>
+        <Association Name="MenuEntryUser">
+          <End Type="MenusEntityModel.MenuEntry" Role="MenuEntry" Multiplicity="*" />
+          <End Type="MenusEntityModel.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="LogEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" />
+          <Property Name="Details" Type="String" Nullable="true" />
+          <Property Name="CredentialsSummary" Type="String" Nullable="true" />
+          <Property Name="Moment" Type="DateTime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MenusEntityModelStoreContainer" CdmEntityContainer="MenusEntityModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(MenusEntityModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ExpectedNumCalories" ColumnName="ExpectedNumCalories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(MenusEntityModel.UserRole)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CanCRUDOthersEntries" ColumnName="CanCRUDOthersEntries" />
+          <ScalarProperty Name="CanCRUDUsers" ColumnName="CanCRUDUsers" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuEntries">
+      <EntityTypeMapping TypeName="IsTypeOf(MenusEntityModel.MenuEntry)">
+        <MappingFragment StoreEntitySet="MenuEntries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Moment" ColumnName="Moment" />
+          <ScalarProperty Name="NumCalories" ColumnName="NumCalories" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogEntries">
+      <EntityTypeMapping TypeName="IsTypeOf(MenusEntityModel.LogEntry)">
+        <MappingFragment StoreEntitySet="LogEntries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="CredentialsSummary" ColumnName="CredentialsSummary" />
+          <ScalarProperty Name="Moment" ColumnName="Moment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserUserRole" TypeName="MenusEntityModel.UserUserRole" StoreEntitySet="UserUserRole">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="UserRole">
+        <ScalarProperty Name="Id" ColumnName="UserRoles_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MenuEntryUser" TypeName="MenusEntityModel.MenuEntryUser" StoreEntitySet="MenuEntries">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="MenuEntry">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee01fd47309040af94c7bc9552cc142f" Name="Diagram1">
+        <EntityTypeShape EntityType="MenusEntityModel.User" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenusEntityModel.UserRole" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenusEntityModel.MenuEntry" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MenusEntityModel.LogEntry" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="MenusEntityModel.UserUserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="MenusEntityModel.MenuEntryUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MenusEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="MenusEntityModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="MenusEntityModel.User" />
+    <EntitySet Name="UserRoles" EntityType="MenusEntityModel.UserRole" />
+    <AssociationSet Name="UserUserRole" Association="MenusEntityModel.UserUserRole">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="MenuEntries" EntityType="MenusEntityModel.MenuEntry" />
+    <AssociationSet Name="MenuEntryUser" Association="MenusEntityModel.MenuEntryUser">
+      <End Role="MenuEntry" EntitySet="MenuEntries" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="LogEntries" EntityType="MenusEntityModel.LogEntry" />
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="30">
+      <Documentation>
+        <Summary>Username used for login.</Summary>
+      </Documentation>
+    </Property>
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="3000">
+      <Documentation>
+        <LongDescription>Password used for login</LongDescription>
+      </Documentation>
+    </Property>
+    <NavigationProperty Name="UserRoles" Relationship="MenusEntityModel.UserUserRole" FromRole="User" ToRole="UserRole" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" annotation:StoreGeneratedPattern="None" />
+    <NavigationProperty Name="MenuEntries" Relationship="MenusEntityModel.MenuEntryUser" FromRole="User" ToRole="MenuEntry" />
+    <Property Name="ExpectedNumCalories" Type="Int32" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CanCRUDOthersEntries" Type="Boolean" Nullable="false" />
+    <Property Name="CanCRUDUsers" Type="Boolean" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MenusEntityModel.UserUserRole" FromRole="UserRole" ToRole="User" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <Association Name="UserUserRole">
+    <End Type="MenusEntityModel.User" Role="User" Multiplicity="*" />
+    <End Type="MenusEntityModel.UserRole" Role="UserRole" Multiplicity="*" />
+  </Association>
+  <EntityType Name="MenuEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="Moment" Type="DateTime" Nullable="false" />
+    <Property Name="NumCalories" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="MenusEntityModel.MenuEntryUser" FromRole="MenuEntry" ToRole="User" />
+  </EntityType>
+  <Association Name="MenuEntryUser">
+    <End Type="MenusEntityModel.MenuEntry" Role="MenuEntry" Multiplicity="*" />
+    <End Type="MenusEntityModel.User" Role="User" Multiplicity="1" />
+  </Association>
+  <EntityType Name="LogEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="true" />
+    <Property Name="CredentialsSummary" Type="String" Nullable="true" />
+    <Property Name="Moment" Type="DateTime" Nullable="false" />
+  </EntityType>
+</Schema>
