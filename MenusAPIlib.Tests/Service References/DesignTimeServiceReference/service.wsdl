@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MenusService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/MenusAPI" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Net" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMenusService_ResetDatabase_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetDatabase" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ResetDatabase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetDatabaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_IsDatabaseUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDatabaseUp" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_IsDatabaseUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDatabaseUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_AuthenticateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_AuthenticateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_LogoutUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutUser" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_LogoutUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CreateNewAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewAccount" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CreateNewAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:CUDUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CUDUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDMenus_InputMessage">
+    <wsdl:part name="parameters" element="tns:CUDMenus" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDMenus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CUDMenusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:CUDRoles" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_CUDRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CUDRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadLog" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadMenus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMenus" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadMenus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMenusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadRoles" />
+  </wsdl:message>
+  <wsdl:message name="IMenusService_ReadRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadRolesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMenusService">
+    <wsdl:operation name="ResetDatabase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/ResetDatabase" message="tns:IMenusService_ResetDatabase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/ResetDatabaseResponse" message="tns:IMenusService_ResetDatabase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDatabaseUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/IsDatabaseUp" message="tns:IMenusService_IsDatabaseUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/IsDatabaseUpResponse" message="tns:IMenusService_IsDatabaseUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/AuthenticateUser" message="tns:IMenusService_AuthenticateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/AuthenticateUserResponse" message="tns:IMenusService_AuthenticateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/LogoutUser" message="tns:IMenusService_LogoutUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/LogoutUserResponse" message="tns:IMenusService_LogoutUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/CreateNewAccount" message="tns:IMenusService_CreateNewAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/CreateNewAccountResponse" message="tns:IMenusService_CreateNewAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CUDUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/CUDUsers" message="tns:IMenusService_CUDUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/CUDUsersResponse" message="tns:IMenusService_CUDUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CUDMenus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/CUDMenus" message="tns:IMenusService_CUDMenus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/CUDMenusResponse" message="tns:IMenusService_CUDMenus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CUDRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/CUDRoles" message="tns:IMenusService_CUDRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/CUDRolesResponse" message="tns:IMenusService_CUDRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/ReadLog" message="tns:IMenusService_ReadLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/ReadLogResponse" message="tns:IMenusService_ReadLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadMenus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/ReadMenus" message="tns:IMenusService_ReadMenus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/ReadMenusResponse" message="tns:IMenusService_ReadMenus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/ReadUsers" message="tns:IMenusService_ReadUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/ReadUsersResponse" message="tns:IMenusService_ReadUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMenusService/ReadRoles" message="tns:IMenusService_ReadRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMenusService/ReadRolesResponse" message="tns:IMenusService_ReadRoles_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMenusService" type="tns:IMenusService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ResetDatabase">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/ResetDatabase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDatabaseUp">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/IsDatabaseUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogoutUser">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/LogoutUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewAccount">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/CreateNewAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CUDUsers">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/CUDUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CUDMenus">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/CUDMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CUDRoles">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/CUDRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadLog">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/ReadLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadMenus">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/ReadMenus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadUsers">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/ReadUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadRoles">
+      <soap:operation soapAction="http://tempuri.org/IMenusService/ReadRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MenusService">
+    <wsdl:port name="BasicHttpBinding_IMenusService" binding="tns:BasicHttpBinding_IMenusService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/MenusAPIlib/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
