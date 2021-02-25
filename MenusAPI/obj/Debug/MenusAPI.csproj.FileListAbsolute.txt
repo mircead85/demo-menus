@@ -1,0 +1,15 @@
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\TimezonesAPI\bin\Debug\MenusAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\TimezonesAPI\bin\Debug\MenusAPI.pdb
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\TimezonesAPI\obj\Debug\MenusAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\TimezonesAPI\obj\Debug\MenusAPI.pdb
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\TimezonesAPI\obj\Debug\MenusAPI.csprojResolveAssemblyReference.cache
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\bin\Debug\MenusAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\bin\Debug\MenusAPI.pdb
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.pdb
+c:\Mircea_C\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.csprojResolveAssemblyReference.cache
+y:\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\bin\Debug\MenusAPI.dll
+y:\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\bin\Debug\MenusAPI.pdb
+y:\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.csprojResolveAssemblyReference.cache
+y:\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.dll
+y:\TopTal\GitRepo\02 - Menus\TopTalMenus\MenusAPI\obj\Debug\MenusAPI.pdb

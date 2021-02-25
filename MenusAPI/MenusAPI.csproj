@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15BB247B-3F88-4C13-B8DD-81D51F38C5BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MenusAPI</RootNamespace>
+    <AssemblyName>MenusAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIUtils.cs" />
+    <Compile Include="BusinessLayer\BusinessObject.cs" />
+    <Compile Include="BusinessLayer\LogEntryBO.cs" />
+    <Compile Include="FaultDetails.cs" />
+    <Compile Include="InboundRequest\CreateNewAccountRequest.cs" />
+    <Compile Include="InboundRequest\CUDRequest.cs" />
+    <Compile Include="InboundRequest\LogoutUserRequest.cs" />
+    <Compile Include="InboundRequest\ReadObjectsRequest.cs" />
+    <Compile Include="InternalErrorException.cs" />
+    <Compile Include="OperationException.cs" />
+    <Compile Include="PagingInfo.cs" />
+    <Compile Include="Replies\AppToken.cs" />
+    <Compile Include="Replies\AuthenticateUserReply.cs" />
+    <Compile Include="SecurityException.cs" />
+    <Compile Include="BusinessLayer\MenuEntryBO.cs" />
+    <Compile Include="BusinessLayer\UserBO.cs" />
+    <Compile Include="BusinessLayer\UserRoleBO.cs" />
+    <Compile Include="InboundRequest\AuthenticateUserRequest.cs" />
+    <Compile Include="InboundRequest\APIInboundRequest.cs" />
+    <Compile Include="InboundRequest\ClearLogRequest.cs" />
+    <Compile Include="InboundRequest\CUDRolesRequest.cs" />
+    <Compile Include="InboundRequest\CUDMenusRequest.cs" />
+    <Compile Include="InboundRequest\CUDUsersRequest.cs" />
+    <Compile Include="InboundRequest\IsDatabaseUpRequest.cs" />
+    <Compile Include="InboundRequest\ReadLogRequest.cs" />
+    <Compile Include="InboundRequest\ReadRolesRequest.cs" />
+    <Compile Include="InboundRequest\ReadMenusRequest.cs" />
+    <Compile Include="InboundRequest\ReadUsersRequest.cs" />
+    <Compile Include="InboundRequest\ResetDatabaseRequest.cs" />
+    <Compile Include="InboundRequest\TimeFilterSpecs.cs" />
+    <Compile Include="IMenusService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Replies\APIReply.cs" />
+    <Compile Include="Replies\CUDOperationsReply.cs" />
+    <Compile Include="Replies\ReadObjectsReply.cs" />
+    <Compile Include="UserCredentials.cs" />
+    <Compile Include="WebReadyException.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

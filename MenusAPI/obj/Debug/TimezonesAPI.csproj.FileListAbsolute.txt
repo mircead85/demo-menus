@@ -1,0 +1,9 @@
+C:\Mircea\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\bin\Debug\TimezonesAPI.dll
+C:\Mircea\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\bin\Debug\TimezonesAPI.pdb
+C:\Mircea\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\obj\Debug\TimezonesAPI.dll
+C:\Mircea\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\obj\Debug\TimezonesAPI.pdb
+C:\MIRCEA_C\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\bin\Debug\TimezonesAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\bin\Debug\TimezonesAPI.pdb
+C:\MIRCEA_C\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\obj\Debug\TimezonesAPI.csprojResolveAssemblyReference.cache
+C:\MIRCEA_C\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\obj\Debug\TimezonesAPI.dll
+C:\MIRCEA_C\TopTal\GitRepo\01 - Timezones\TopTalTimezones\TimezonesAPI\obj\Debug\TimezonesAPI.pdb
