@@ -1,0 +1,80 @@
+﻿body {
+    background-color:white;
+    color:black;
+}
+
+.clsDivMainMenu{
+    background-color:burlywood;
+    height:90px;
+}
+
+.clsBtnMainMenu{
+    background-color: burlywood;
+    border: none;
+    color: black;
+    padding: 20px 5px 20px 30px;
+    text-decoration: none;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+}
+
+.tblMainMenu{
+    border-style: none;
+}
+
+.clsHome{
+    background-color:white;
+}
+
+.clsUsers{
+    background-color:lightgrey;
+}
+
+.clsRoles{
+    background-color:lightgrey;
+}
+
+.clsLogin{
+    background-color:white;
+}
+
+.clsLogout{
+    background-color:white;
+}
+
+.clsDivStatusBar{
+    background-color:burlywood;
+    color:darkblue;
+    height:180px;
+}
+
+.clsTblEntries{
+    border-style: solid;
+    border-width: 5px;
+}
+
+.clsTrEntry{
+    border-style: dotted;
+    border-width: thin;
+}
+
+.clsTdEntry{
+    border-style: dotted;
+    border-width: thin;
+}
+
+.clsBtnTableButton{
+    text-decoration: double;
+}
+
+.clsDivFilterMenus{
+    border-style: dashed;
+    border-width: 1px;
+    padding-bottom: 2px;
+}
+
+.clsNavButton{
+    border:hidden;
+}
+
+

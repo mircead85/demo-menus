@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MenusAPI" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MenusAPI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+  <xs:complexType name="ResetDatabaseRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResetDatabaseRequest" nillable="true" type="tns:ResetDatabaseRequest" />
+  <xs:complexType name="APIInboundRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RequestorCredentials" nillable="true" type="tns:UserCredentials" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="APIInboundRequest" nillable="true" type="tns:APIInboundRequest" />
+  <xs:complexType name="UserCredentials">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TokenID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCredentials" nillable="true" type="tns:UserCredentials" />
+  <xs:complexType name="APIReply">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.ServiceModel" minOccurs="0" name="Error" nillable="true" type="q1:FaultExceptionOfFaultDetails5Nh_PFlQy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="APIReply" nillable="true" type="tns:APIReply" />
+  <xs:complexType name="FaultDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExceptionMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExceptionToString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExceptionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HttpStatusCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FaultDetails" nillable="true" type="tns:FaultDetails" />
+  <xs:complexType name="IsDatabaseUpRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IsDatabaseUpRequest" nillable="true" type="tns:IsDatabaseUpRequest" />
+  <xs:complexType name="AuthenticateUserRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GetSatteliteData" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuthenticateUserRequest" nillable="true" type="tns:AuthenticateUserRequest" />
+  <xs:complexType name="AuthenticateUserReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReadObjectsReply">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SecurityToken" nillable="true" type="tns:AppToken" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuthenticateUserReply" nillable="true" type="tns:AuthenticateUserReply" />
+  <xs:complexType name="ReadObjectsReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIReply">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReadObjects" nillable="true" type="tns:ArrayOfBusinessObject" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadObjectsReply" nillable="true" type="tns:ReadObjectsReply" />
+  <xs:complexType name="ArrayOfBusinessObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessObject" nillable="true" type="tns:BusinessObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessObject" nillable="true" type="tns:ArrayOfBusinessObject" />
+  <xs:complexType name="BusinessObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CorrelationId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNew" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ObjectID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessObject" nillable="true" type="tns:BusinessObject" />
+  <xs:complexType name="UserBO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BusinessObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExpectedNumCalories" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Menus" nillable="true" type="tns:ArrayOfMenuEntryBO" />
+          <xs:element minOccurs="0" name="UserCredentials" nillable="true" type="tns:UserCredentials" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="UserRoles" nillable="true" type="tns:ArrayOfUserRoleBO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserBO" nillable="true" type="tns:UserBO" />
+  <xs:complexType name="ArrayOfMenuEntryBO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuEntryBO" nillable="true" type="tns:MenuEntryBO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMenuEntryBO" nillable="true" type="tns:ArrayOfMenuEntryBO" />
+  <xs:complexType name="MenuEntryBO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BusinessObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ColorCodingWithRegardToOwnerSettings" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="EntryID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Moment" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="NumCalories" type="xs:int" />
+          <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:UserBO" />
+          <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MenuEntryBO" nillable="true" type="tns:MenuEntryBO" />
+  <xs:complexType name="ArrayOfUserRoleBO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserRoleBO" nillable="true" type="tns:UserRoleBO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserRoleBO" nillable="true" type="tns:ArrayOfUserRoleBO" />
+  <xs:complexType name="UserRoleBO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BusinessObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CanCRUDEntries" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CanCRUDUsers" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RoleID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="RoleName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserRoleBO" nillable="true" type="tns:UserRoleBO" />
+  <xs:complexType name="LogEntryBO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BusinessObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CredentialsSummary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Moment" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LogEntryBO" nillable="true" type="tns:LogEntryBO" />
+  <xs:complexType name="AppToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExpiryMomentServer" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TokenId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AppToken" nillable="true" type="tns:AppToken" />
+  <xs:complexType name="LogoutUserRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LogOutAllTokens" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LogoutUserRequest" nillable="true" type="tns:LogoutUserRequest" />
+  <xs:complexType name="CreateNewAccountRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExpectedNumCalories" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="NumericalProof" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateNewAccountRequest" nillable="true" type="tns:CreateNewAccountRequest" />
+  <xs:complexType name="CUDUsersRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CUDRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="JustUpdateAssociationForReferencedRoles" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CUDUsersRequest" nillable="true" type="tns:CUDUsersRequest" />
+  <xs:complexType name="CUDRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ObjectsToCUD" nillable="true" type="tns:ArrayOfBusinessObject" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CUDRequest" nillable="true" type="tns:CUDRequest" />
+  <xs:complexType name="CUDOperationsReply">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIReply">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NewlyCreatedObjectsWithIds" nillable="true" type="tns:ArrayOfBusinessObject" />
+          <xs:element minOccurs="0" name="NumberOfEntriesWhichGeneratedChanges" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CUDOperationsReply" nillable="true" type="tns:CUDOperationsReply" />
+  <xs:complexType name="CUDMenusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CUDRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CUDMenusRequest" nillable="true" type="tns:CUDMenusRequest" />
+  <xs:complexType name="CUDRolesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CUDRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CUDRolesRequest" nillable="true" type="tns:CUDRolesRequest" />
+  <xs:complexType name="ReadLogRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReadObjectsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NoLastDays" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadLogRequest" nillable="true" type="tns:ReadLogRequest" />
+  <xs:complexType name="ReadObjectsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:APIInboundRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SpecificObjectId" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadObjectsRequest" nillable="true" type="tns:ReadObjectsRequest" />
+  <xs:complexType name="ReadMenusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReadObjectsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OwnerOfMenuEntries" nillable="true" type="tns:UserBO" />
+          <xs:element minOccurs="0" name="TimeFilterSpecs" nillable="true" type="tns:TimeFilterSpecs" />
+          <xs:element minOccurs="0" name="bFillOutCaloricColorCoding" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadMenusRequest" nillable="true" type="tns:ReadMenusRequest" />
+  <xs:complexType name="TimeFilterSpecs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MinuteInDayFrom" type="xs:int" />
+      <xs:element minOccurs="0" name="MinuteInDayTo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimeFilterSpecs" nillable="true" type="tns:TimeFilterSpecs" />
+  <xs:complexType name="ReadUsersRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReadObjectsRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadUsersRequest" nillable="true" type="tns:ReadUsersRequest" />
+  <xs:complexType name="ReadRolesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReadObjectsRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadRolesRequest" nillable="true" type="tns:ReadRolesRequest" />
+</xs:schema>

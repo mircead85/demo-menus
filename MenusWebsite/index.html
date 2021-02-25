@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Menus Webservice Demo Project by (c) Mircea Digulescu, 2016</title>
+    <link href="Css/Global.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="clsDivMainMenu" id="divMainMenu">
+        <table id="tblMainMenu" align="right">
+            <tr>
+                <td id="tdMMHome">
+                    <input class="clsBtnMainMenu" id="btnMMHome" type="button" value="Home" onclick="fncMMHome();" />
+                </td>
+                <td id="tdMMUsers">
+                    <input class="clsBtnMainMenu" id="btnMMUsers" type="button" value="Administer Users" onclick="fncMMUsers();" />
+                </td>
+                <td id="tdMMRoles">
+                    <input class="clsBtnMainMenu" id="btnMMRoles" type="button" value="Administer Roles" onclick="fncMMRoles();" />
+                </td>
+                <td id="tdMMMenus">
+                    <input class="clsBtnMainMenu" id="btnMMMenus" type="button" value="Display Menus" onclick="fncMMMenus();" />
+                </td>
+                <td id="tdMMLogin">
+                    <input class="clsBtnMainMenu" id="btnMMLogin" type="button" value="Login" onclick="fncMMLogin();" />
+                </td>
+                <td id="tdMMLogout">
+                    <input class="clsBtnMainMenu" id="btnMMLogout" type="button" value="Logout" onclick="fncMMLogout();" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+
+
+    <div class="clsHome" id="divHome">
+        <div>
+            <h2>Welcome to Menus Service Demo Project by (c) Mircea Digulescu.</h2>
+            <p>This is the home screen. Use the menu on the upper-right to perform tasks.</p>
+            <p>If you don't have an account yet, you can create one from the Login menu.</p>
+        </div>
+        <br />
+        <div id="divHomeWelcomeUser">
+            <p id="pWelcomeUserMsg"></p>
+        </div>
+    </div>
+
+    <div class="clsUsers" id="divUsers">
+        <div>
+            <h2 id="h2WelcomeTextUsers">Hello! Loading...</h2>
+            <table id="tbNavUsers">
+                <tr>
+                    <td align="center">
+                        <input type="button" id="btnUsersNavFirst" value="|<" onclick="doNavUsers(-2);" class="clsNavButton" />
+                        <input type="button" id="btnUsersNavPrior" value="<" onclick="doNavUsers(-1);" class="clsNavButton" />
+                        Page: <input type="text" id="txtUsersNavPageNo" value="1" size="3" /> of <label id="lblUsersPagesTotal">1</label>
+                        <input type="button" id="btnUsersNavToPage" value="Go" onclick="doNavUsers(0);" class="clsNavButton" />
+                        <input type="button" id="btnUsersNavNext" value=">" onclick="doNavUsers(1);" class="clsNavButton" />
+                        <input type="button" id="btnUsersNavLast" value=">|" onclick="doNavUsers(2);" class="clsNavButton" />
+                    </td>
+                </tr>
+            </table>
+            <table id="tblUsers" class="clsTblEntries">
+                <tr id="trUsers_Idx_1" tag="1" class="clsTrEntry">
+                    <td class="clsTdEntry">
+                        <p>Username: joe; Password: '---ommitted---'; DisplayName=JoeTheMan.</p>
+                        <p>Roles: Manager, Regular.</p>
+                        <p>
+                            <input type="button" id="btnStartEditUser_Idx_1" value="Edit User" onclick="doStartEditUser(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                    <td id="tdUsers_Idx_1_Edit" tag="1">
+                        <p>Choose Username: <input type="text" id="txtUserUsername_Idx_1" size="15" /></p>
+                        <p>Choose Password (leave blank for no change): <input type="password" id="txtUserPassword_Idx_1" size="15" /></p>
+                        <p>Choose a Display Name:<input type="text" id="txtUserDisplayName_Idx_1" size="15" /></p>
+                        <p>
+                            <input type="button" id="btnEditUser_Idx_1" value="Confirm" onclick="doEditUser(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnDeleteUser_Idx_1" value="Delete User" onclick="doDeleteUser(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnCancelEditUser_Idx_1" value="Cancel" onclick="cancelEditUser(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                    <td id="tdUsers_Idx_1_EditRoles" tag="1">
+                        <p>Role1: <input type="checkbox" checked="checked" id="ckEditUserRoles_Idx_1_0" size="4" /></p>
+                        <p>Role2: <input type="checkbox" id="ckEditUserRoles_Idx_1_1" size="4" /></p>
+                        <p>
+                            <input type="button" id="btnUpdateUserRoles_Idx_1" value="Update" onclick="doUpdateUserRoles(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p id="pUsersFooter">These are all the users on this page.</p>
+        </div>
+    </div>
+
+    <div class="clsRoles" id="divRoles">
+        <div>
+            <h2 id="h2WelcomeTextRoles">Hello privileged user! Here you can administer Roles.</h2>
+            <table id="tbNavRoles">
+                <tr>
+                    <td align="center">
+                        <input type="button" id="btnRolesNavFirst" value="|<" onclick="doNavRoles(-2);" class="clsNavButton" />
+                        <input type="button" id="btnRolesNavPrior" value="<" onclick="doNavRoles(-1);" class="clsNavButton" />
+                        Page: <input type="text" id="txtRolesNavPageNo" value="1" size="3" /> of <label id="lblRolesPagesTotal">1</label>
+                        <input type="button" id="btnRolesNavToPage" value="Go" onclick="doNavRoles(0);" class="clsNavButton" />
+                        <input type="button" id="btnRolesNavNext" value=">" onclick="doNavRoles(1);" class="clsNavButton" />
+                        <input type="button" id="btnRolesNavLast" value=">|" onclick="doNavRoles(2);" class="clsNavButton" />
+                    </td>
+                </tr>
+            </table>
+            <table id="tblRoles" class="clsTblEntries">
+                <tr id="trRoles_Idx_1" tag="1" class="clsTrEntry">
+                    <td class="clsTdEntry">
+                        <p>Role Name: Regular; Is Admin: no; Can CUD Users: yes; Can CUD Others Menu entries: yes.</p>
+                        <p>
+                            <input type="button" id="btnStartEditRole_Idx_1" value="Edit Role" onclick="doStartEditRole(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                    <td id="tdRoles_Idx_1_Edit" tag="1" >
+                        <p>Choose Role Name: <input type="text" id="txtRoleName_Idx_1" size="15" /></p>
+                        <p>Is Admin: <input type="checkbox" id="ckRoleIsAdmin_Idx_1" size="4" /></p>
+                        <p>Can CUD Users: <input type="checkbox" id="ckRoleCanCUDUsers_Idx_1" size="4" /></p>
+                        <p>Can CUD Others Menu entries: <input type="checkbox" id="ckRoleCanCUDOthersMenus_Idx_1" size="4" /></p>
+                        <p>
+                            <input type="button" id="btnEditRole_Idx_1" value="Confirm" onclick="doEditRole(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnDeleteRole_Idx_1" value="Delete Role" onclick="doDeleteRole(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnCancelEditRole_Idx_1" value="Cancel" onclick="cancelEditRole(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p id="pRolesFooter">These are all the roles on this page.</p>
+        </div>
+    </div>
+
+    <div class="clsMenus" id="divMenus">
+        <div>
+            <h2>Welcome! Here you can observe and also edit the Menus to which you are authorized!</h2>
+            <p>Show only your own Menus <input type="checkbox" id="ckShowJustOwnMenus" size="4"/></p> 
+            <p></p>
+                <p>Filter Menus? <input type="checkbox" id="ckFilterMenus" size="4" onclick="doClickFilterMenus()" /></p> 
+                <div id="divFilterMenus" class="clsDivFilterMenus">
+                    <p>From Date:<input type="date" id="dtFilterFromDate" size="15" /></p>
+                    <p>To Date:<input type="date" id="dtFilterToDate" size="15" /></p>
+                    <p>From Time: Hour <select id="cbFilterFromTimeHour"> </select> Minute <select id="cbFilterFromTimeMinute"></select> </p>
+                    <p>To Time: Hour <select id="cbFilterToTimeHour"></select> Minute <select id="cbFilterToTimeMinute"></select> </p>
+                </div>
+            <p id="pColorCodeMenus">Color code Menus according to user's set threshold (calories per day)?<input type="checkbox" id="ckColorCodeMenus" size="4" onclick="doClickColorCodeMenus()" /></p>
+            <input type="button" value="Apply" onclick="loadMenus();" class="clsBtnTableButton"/>
+            <p>
+                Here are the Menus:
+            </p>
+            <table id="tbNavMenus">
+                <tr>
+                    <td align="center">
+                        <input type="button" id="btnMenusNavFirst" value="|<" onclick="doNavMenus(-2);" class="clsNavButton" />
+                        <input type="button" id="btnMenusNavPrior" value="<" onclick="doNavMenus(-1);" class="clsNavButton" />
+                        Page: <input type="text" id="txtMenusNavPageNo" value="1" size="3" /> of <label id="lblMenusPagesTotal">1</label>
+                        <input type="button" id="btnMenusNavToPage" value="Go" onclick="doNavMenus(0);" class="clsNavButton" />
+                        <input type="button" id="btnMenusNavNext" value=">" onclick="doNavMenus(1);" class="clsNavButton" />
+                        <input type="button" id="btnMenusNavLast" value=">|" onclick="doNavMenus(2);" class="clsNavButton" />
+                    </td>
+                </tr>
+            </table>
+            <table id="tblMenus" class="clsTblEntries">
+                <tr id="trMenus_Idx_1" tag="1" class="clsTrEntry" bgcolor="red">
+                    <td class="clsTdEntry">
+                        <p id="txtMenu_Idx_Text">Name: MyMenu; City: New York; GMT Offset: -360.</p>
+                        Current Time there: <p id="txtMenu_Idx_1_Value">5/9/2016 21:41.</p>
+                        <p>
+                            <input type="button" id="btnStartEditMenu_Idx_1" value="Edit Menu" onclick="doStartEditMenu(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                    <td id="tdRoles_Idx_1_Edit" tag="1">
+                        <p>Menu Name: <input type="text" id="txtMenuName_Idx_1" size="15" /></p>
+                        <p>Menu City Name: <input type="text" id="txtMenuCity_Idx_1" size="15" /></p>
+                        <p>Menu difference from UTC time (in minutes): <input type="text" id="txtMenuGMTOffset_Idx_1" size="8" /></p>
+                        <p>Owner: Gigel. (you cannot edit owner)</p>
+                        <p>
+                            <input type="button" id="btnEditMenu_Idx_1" value="Confirm" onclick="doEditMenu(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnDeleteMenu_Idx_1" value="Delete Menu" onclick="doDeleteMenu(1);" class="clsBtnTableButton"/>
+                            <input type="button" id="btnCancelEditMenu_Idx_1" value="Cancel" onclick="cancelEditMenu(1);" class="clsBtnTableButton"/>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p id="pMenusFooter">These are all the Menus on this page.</p>
+        </div>
+    </div>
+
+    <div class="clsLogin" id="divLogin">
+        <div id="divDoLogin">
+            <h2>Welcome to Menus Service Demo Project by (c) Mircea Digulescu.</h2>
+            <h3>Please enter your login credentials below</h3>
+            <p>Username:<br /> <input type="text" id="txtUsername" size="15"/></p>
+            <p>Pasword:<br /> <input type="password" id="txtPassword" size="15"/></p>
+            <p>Remember Me:<input type="checkbox" id="ckLoginRememberMe" size="4" /></p>
+            <p></p>
+            <p><input type="button" id="btnLogin" value="Login me in scotty" onclick="doLogin();" /></p>
+        </div>
+        <div id="divCreateAccount">
+             <h3>Don't have an account yet? Please create one below!</h3>
+            <p>Choose Username: <br /><input type="text" id="txtnewUsername" size="15"/></p>
+            <p>Choose Password: <br /><input type="password" id="txtnewPassword" size="15" /></p>
+            <p>Reenter Password: <br /><input type="password" id="txtrenterPassword" size="15" /></p>
+            <p>Choose a Display Name:<br /> <input type="text" id="txtDisplayName" size="15"/></p>
+            <div id="divChallenge">
+                <p id="pChallengeText">The text of the challenge will be be generated dynamically on the client side.</p>
+                <p>Your response: <input type="text" id="txtchallengeResponse" size="10" /></p>
+            </div>
+            <input type="button" id="btnCreateAccount" value="Create Account" onclick="doCreateAccount();" />
+            <p id="pCreateAccountText">The response for pressing create account will be acquired from server.</p>
+        </div>
+    </div>
+    
+    <div class="clsLogout" id="divLogout">
+        <div>
+            <h2>This is the Menus Service Demo Project by (c) Mircea Digulescu.</h2>
+            <p>Thank you for using the service!</p>
+        </div>
+        <div id="divLogoutUserMsg">
+            <p id="pLogoutMsg">You have been succesfully logged out.</p>
+        </div>
+    </div>
+
+    <div id="divAllProducts">
+        <h2>All Products</h2>
+        <ul id="products" />
+    </div>
+
+    <br />
+    <br />
+    <div id ="divStatusBar" class="clsDivStatusBar">
+        <br />
+        <h2>Status</h2>
+        Status: <p id="pStatusBarText">No server operation yet!</p>
+    </div>
+
+
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/clientDataModelJS.js"></script>
+    <script src="Scripts/clientPresentationModelJS.js"></script>
+
+    <script src="Scripts/homeScreenJS.js"></script>
+    <script src="Scripts/loginScreenJS.js"></script>
+    <script src="Scripts/logoutScreenJS.js"></script>
+    <script src="Scripts/rolesScreenJS.js"></script>
+    <script src="Scripts/usersScreenJS.js"></script>
+    <script src="Scripts/menusScreenJS.js"></script>
+
+    <script src="Scripts/menuJS.js"></script>
+    <script src="Scripts/mainJS.js"></script>
+    
+    <script>
+            
+    </script>
+</body>
+</html>
